@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import communicate
+import src.communicate as communicate
 import aiogram
 
 if __name__ == '__main__':

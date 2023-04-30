@@ -2,8 +2,8 @@
 
 import aiogram
 import requests
-from service import *
-from strings import *
+from src.service import *
+from src.strings import *
 
 bot = aiogram.Bot(token=SERVICE.telegram_token)
 dispatcher = aiogram.Dispatcher(bot=bot)
