@@ -1,26 +1,21 @@
+#!/usr/bin/env python3
+
 import aiogram
-import aiogram.utils.markdown as markdown
-
-
-class SERVICE:
-    telegram_token = '6225685870:AAHUk_8qnjnwJsmxGRZUnvNklT80nyhPhfQ'
-    weather_token = '63b8fe4d387971a63cabdabd9d1e332f'
-    res = 'share/'
-    parse = 'Markdown'
 
 
 class LINKS:
-    github = markdown.link(url='https://github.com/NTheme', title='GitHub')
-    telegram = markdown.link(url='https://t.me/n_theme', title='Telegram')
+    github = 'https://github.com/NTheme'
+    telegram = 'https://t.me/n_theme'
     source = 'https://openweathermap.org/'
     request = 'http://api.openweathermap.org/data/2.5/forecast/'
 
 
 class TEXT:
-    start = f'Hi! *NThemeWeather* is a weather searcher Telegram bot. Use /help to get more information about usage '\
-            f'or just type a city name to find\n\n'\
+    start = f'Hi! *NThemeWeather* is a weather searcher Telegram bot. '\
+            f'Use /help to get more information about usage or just type a city name to find\n\n'\
             f'Author: *NThemeDEV*\n'\
-            f'Contacts: {LINKS.github}, {LINKS.telegram}'
+            f'Contacts: {aiogram.utils.markdown.link(url=LINKS.github, title="GitHub")}, '\
+            f'{aiogram.utils.markdown.link(url=LINKS.telegram, title="Telegram")}'
 
     help = f'*---NThemeWeather Bot---*\n\n'\
            f'*What can this bot do?*\n'\
