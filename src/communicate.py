@@ -43,30 +43,6 @@ async def cmd_exit(msg: aiogram.types.Message):
     await msg.answer_photo(open(SERVICE.res + 'bye.jpg', 'rb'), caption=TEXT.exit, parse_mode=SERVICE.parse)
 
 
-async def get_weather_type(msg: aiogram.types.Message):
-    if not msg.from_id in data or len(data[msg.from_id]) == 0:
-        await msg.answer(TEXT.empty, parse_mode=SERVICE.parse)
-        return
-    buttons = [aiogram.types.InlineKeyboardButton(
-        text=TEXT.style_dict[i], callback_data=f'style_{i}') for i in range(len(TEXT.style_dict))]
-    board = aiogram.types.InlineKeyboardMarkup(row_width=2)
-    board.add(*buttons)
-    await msg.answer(f'{TEXT.style_ask}{TEXT.current}*{data[msg.from_id][0]["city"]}*\n',
-                     parse_mode=SERVICE.parse, disable_web_page_preview=True, reply_markup=board)
-
-
-def get_reply(data: dict) -> str:
-    reply = ''
-    for key, value in data:
-        if key != 'city':
-            reply += TEXT.info[key] + f'*{str(value)}*\n'
-    return reply + '\n'
-
-
-def is_end_day(time: str) -> bool:
-    return time[11:13] == '00'
-
-
 @dispatcher.callback_query_handler(lambda c: c.data and c.data.startswith('style_'))
 async def menu_parser(call: aiogram.types.CallbackQuery):
     user_base = data[call.from_user.id]
@@ -77,7 +53,7 @@ async def menu_parser(call: aiogram.types.CallbackQuery):
     type = int(call.data[-1])
     reply = f'{TEXT.response}{TEXT.current}*{user_base[0]["city"]}*\n\n'
     if type < 2:
-        reply += get_reply(user_base[type * 8].items())
+        reply += TEXT.get_reply(user_base[type * 8].items())
         img_name = user_base[type * 8]['main'].lower()
         if user_base[type * 8]['main'] == 'Clear':
             if 9 <= int(user_base[type * 8]['time'][11:13]) <= 18:
@@ -87,15 +63,15 @@ async def menu_parser(call: aiogram.types.CallbackQuery):
         await call.message.answer_photo(open(SERVICE.res + img_name + '.jpg', 'rb'))
     elif type < 6:
         shift = 0
-        while not is_end_day(user_base[shift]['time']):
+        while not TEXT.is_end_day(user_base[shift]['time']):
             shift += 1
         for index in range(max(0, shift + (type - 3) * 8), len(user_base)):
-            reply += get_reply(user_base[index].items())
-            if index + 1 == len(user_base) or is_end_day(user_base[index + 1]['time']):
+            reply += TEXT.get_reply(user_base[index].items())
+            if index + 1 == len(user_base) or TEXT.is_end_day(user_base[index + 1]['time']):
                 break
     else:
         for i in range(len(user_base) // 8):
-            reply += get_reply(user_base[i * 8].items())
+            reply += TEXT.get_reply(user_base[i * 8].items())
 
     await call.message.answer(text=reply, parse_mode=SERVICE.parse)
     await call.answer()
@@ -125,3 +101,15 @@ async def get_city(msg: aiogram.types.Message):
             data[msg.from_id][i]['wndf'] = base[i]["wind"]["deg"]
 
         await get_weather_type(msg)
+
+
+async def get_weather_type(msg: aiogram.types.Message):
+    if not msg.from_id in data or len(data[msg.from_id]) == 0:
+        await msg.answer(TEXT.empty, parse_mode=SERVICE.parse)
+        return
+    buttons = [aiogram.types.InlineKeyboardButton(
+        text=TEXT.style_dict[i], callback_data=f'style_{i}') for i in range(len(TEXT.style_dict))]
+    board = aiogram.types.InlineKeyboardMarkup(row_width=2)
+    board.add(*buttons)
+    await msg.answer(f'{TEXT.style_ask}{TEXT.current}*{data[msg.from_id][0]["city"]}*\n',
+                     parse_mode=SERVICE.parse, disable_web_page_preview=True, reply_markup=board)

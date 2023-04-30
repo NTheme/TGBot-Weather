@@ -42,6 +42,18 @@ class TEXT:
             'hmid': '  Humidity: ', 'skyd': '  Clouds level: ', 'wnds': '  Wind speed: ',
             'wndf': '  Wind direction (in degrees from north): '}
 
+    @staticmethod
+    def get_reply(data: dict) -> str:
+        reply = ''
+        for key, value in data:
+            if key != 'city':
+                reply += TEXT.info[key] + f'*{str(value)}*\n'
+        return reply + '\n'
+
+    @staticmethod
+    def is_end_day(time: str) -> bool:
+        return time[11:13] == '00'
+
 
 class SHARE:
     weather_types = {'Clear', 'Clouds', 'Rain',
