@@ -6,7 +6,7 @@ This is a simple Telegram bot for getting weather forecast with API support deve
 You can open Telegram of [NThemeWeather Bot](https://t.me/n_theme_weather_bot) and check functionality at any time.
 
 ## How to build and run local copy manually
-_Here is an instruction if you want to run your own copy of *WeatherBot*_.
+_Here is an instruction if you want to run your own copy of **WeatherBot**_.
 
 1. Clone the repo and go to project folder:
   ```sh
@@ -31,7 +31,7 @@ _Required docker >= 23_
   ```
 
 ### Run locally
-Use this instruction if you want to just run *WeatherBot*.
+Use this instruction if you want to just run **WeatherBot**.
 _Required python >= 3.8_
 
 3. Create and launch python virtual environment:
@@ -49,7 +49,7 @@ _Required python >= 3.8_
   ```sh
   python3 ./bot.py
   ```
-  *WeatherBot* will be working in the background. Congratulations!
+  **WeatherBot** will be working in the background. Congratulations!
 
 ## Usage
 Very easy and user-friendly! Check ot out by calling _bot help_.
