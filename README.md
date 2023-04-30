@@ -17,8 +17,8 @@ _Here is an instruction if you want to run your own copy of **WeatherBot**_.
 2. Fill your private API Tokens of Telegram and OpenWeatherMap at _service.py_
 
 ### Using **Docker**
-Use these following steps if you have a **Docker** system installed.
-_Required docker >= 23_
+Use these following steps if you have a **Docker** system installed.  
+_Required docker version >= 23_
 
 3. Build docker container by executing the following command:
   ```sh
@@ -31,8 +31,8 @@ _Required docker >= 23_
   ```
 
 ### Run locally
-Use this instruction if you want to just run **WeatherBot**.
-_Required python >= 3.8_
+Use this instruction if you want to just run **WeatherBot**.  
+_Required python version >= 3.8_
 
 3. Create and launch python virtual environment:
   ```sh
