@@ -8,44 +8,44 @@ You can open Telegram of [NThemeWeather Bot](https://t.me/n_theme_weather_bot) a
 ## How to build and run local copy manually
 _Here is an instruction if you want to run your own copy of **WeatherBot**_.
 
-1. Clone the repo and go to project folder:
+0. Clone the repo and go to project folder:
   ```sh
   git clone https://github.com/NTheme/TGBot-Weather.git
   cd TGBot-Weather
   ```
 
-2. Fill your private API Tokens of Telegram and OpenWeatherMap at _service.py_
-
 ### Using **Docker**
 Use these following steps if you have a **Docker** system installed.  
 _Required docker version >= 23_
 
-3. Build docker container by executing the following command:
+1. Build docker container by executing the following command:
   ```sh
   docker build -t weather-bot .
   ```
 
-4. Run docker container in the background:
+2. Fill TG_TOKEN and WEATHER_TOKEN and then run docker container in the background by following command:
   ```sh
-  docker run -d weather-bot
+  docker run -d -e TG_TOKEN=... -e WEATHER_TOKEN=... ntheme/weather-bot
   ```
 
 ### Run locally
 Use this instruction if you want to just run **WeatherBot**.  
 _Required python version >= 3.8_
 
-3. Create and launch python virtual environment:
+1. Create and launch python virtual environment:
   ```sh
   python3 -m venv venv
   source  ./venv/bin/activate
   ```
 
-4. Install requirement libraries:
+2. Fill your private API Tokens of Telegram and OpenWeatherMap at _service.py_ by replacing existing value.
+
+3. Install requirement libraries:
   ```sh
   pip3 install -r requirements.txt
   ```
 
-5. Launch bot main file:
+4. Launch bot main file:
   ```sh
   python3 ./bot.py
   ```
