@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+import os
+
 class SERVICE:
-    telegram_token = 'TOKEN'  # Paste your Telegram API token here
-    weather_token = 'TOKEN'  # Paste your OpenWeatherMap token here
+    telegram_token = os.getenv("TG_TOKEN")
+    weather_token = os.getenv("WEATHER_TOKEN")
     res = 'share/'
     parse = 'Markdown'
