@@ -51,7 +51,7 @@ class TEXT:
         return reply + '\n'
 
     @staticmethod
-    def is_end_day( time: str) -> bool:
+    def is_end_day(time: str) -> bool:
         return time[11:13] == '00'
 
 
