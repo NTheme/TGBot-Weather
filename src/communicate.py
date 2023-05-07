@@ -2,6 +2,7 @@
 
 import aiogram
 import datetime
+import os
 
 from src.service import *
 from src.strings import *

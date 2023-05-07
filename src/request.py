@@ -2,6 +2,7 @@
 
 import requests
 import aiogram
+import csv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 from src.service import *
