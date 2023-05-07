@@ -3,3 +3,7 @@ aiogram
 requests
 
 autopep8
+
+datetime
+
+apscheduler
